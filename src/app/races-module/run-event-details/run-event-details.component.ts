@@ -1,7 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {SportEvent} from "../sport-event";
+import {SportEvent} from "../entities/sport-event";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RunEventsService} from "../run-events.service";
+import {RunEventsService} from "../services/run-events.service";
+
 
 @Component({
   selector: 'run-event-details',
@@ -9,7 +10,6 @@ import {RunEventsService} from "../run-events.service";
   styleUrls: ['./run-event-details.component.scss']
 })
 export class RunEventDetailsComponent implements OnInit{
-
   sportEvent: SportEvent;
   sub: any;
 
@@ -39,5 +39,6 @@ export class RunEventDetailsComponent implements OnInit{
     this.runEventsService.save(this.sportEvent);
     alert(`saved!!! &{JSON.stringify(this.person)}`);
   }
+
 
 }

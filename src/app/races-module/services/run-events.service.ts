@@ -1,30 +1,29 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/Rx'
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-
-
-import {SportEvent} from "./sport-event";
+import {Http, Response, Headers} from "@angular/http";
+import {Observable} from "rxjs/Observable";
+import "rxjs";
+import "rxjs/add/operator/map";
+import "rxjs/Rx";
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/throw";
+import {SportEvent} from "../entities/sport-event";
 
 
 @Injectable()
 export class RunEventsService {
-  private baseUrl: string = 'http://localhost:8090';
+  private baseUrl: string = 'http://localhost:8080/races/';
 
   constructor(private http: Http) {
   }
 
   getAll(): Observable<SportEvent[]> {
     let sportEvents$ = this.http
-      .get(`${this.baseUrl}/races/`, {headers: this.getHeaders()})
+      .get(`${this.baseUrl}`, {headers: this.getHeaders()})
       .map(mapEvents)
       .catch(handleError);
     console.log("Received events list: ", sportEvents$);
     return sportEvents$;
+
   }
 
   private getHeaders() {
@@ -36,7 +35,7 @@ export class RunEventsService {
 
   get(id: number): Observable<SportEvent> {
     let sportEvent$ = this.http
-      .get(`${this.baseUrl}/races/${id}`, {headers: this.getHeaders()})
+      .get(`${this.baseUrl}${id}`, {headers: this.getHeaders()})
       .map(mapEvent)
       .catch(handleError);
     return sportEvent$;
@@ -45,8 +44,23 @@ export class RunEventsService {
   save(sportEvent: SportEvent): Observable<Response> {
     return this
       .http
-      .post(`${this.baseUrl}/load/${sportEvent.id}`,JSON.stringify(sportEvent), {headers: this.getHeaders()});
+      .post(`${this.baseUrl}/load/${sportEvent.id}`, sportEvent, {headers: this.getHeaders()});
   }
+  registerNewRunEvent(sportEvent: SportEvent): Observable<Response> {
+    return this
+      .http
+      .post(`${this.baseUrl}registerevent`,{body: JSON.stringify(sportEvent)}, {headers: this.getHeaders()});
+  }
+
+  removeEvent(id: number){
+    let result = this.http
+      .delete(`${this.baseUrl}${id}`, {headers: this.getHeaders()})
+      .catch(handleError);
+      console.log('destination address for delete: ', `${this.baseUrl}${id}`);
+    console.log('delete result: ', result);
+    return result;
+  }
+
 }
 
 function mapEvent(response: Response): SportEvent {
@@ -85,7 +99,7 @@ function toEvent(r: any): SportEvent {
 }
 
 function extractId(sportEventData: any) {
-  let extractedId = sportEventData.url.replace('http://localhost:8090/races/', '');
+  let extractedId = sportEventData.url.replace('http://localhost:8080/races/', '');
     //.replace('/', '');
   console.log('Extracted id: ', extractedId);
   return parseInt(extractedId);

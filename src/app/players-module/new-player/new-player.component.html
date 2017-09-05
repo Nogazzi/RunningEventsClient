@@ -1,0 +1,47 @@
+
+  <form  (ngSubmit)="registerNewPlayer()" #playerForm="ngForm" >
+
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Imię" >
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput type="text" placeholder="Nazwisko" >
+      </md-input-container>
+    </div>
+
+    <md-input-container>
+      <input mdInput [mdDatepicker]="picker" placeholder="Data urodzenia">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+
+
+    <p> Narodowość: </p>
+    <md-select [(ngModel)]="selectedNationality" name="nationality">
+      <md-option *ngFor="let nationality of nationalities" [value]="nationality.name_pl">
+        {{nationality.name_pl}}
+      </md-option>
+    </md-select>
+
+
+
+    <p> Drużyna: </p>
+    <md-select [(ngModel)]="selectedTeam" name="team">
+      <md-option *ngFor="let team of teams" [value]="team.name">
+        {{team.name}}
+      </md-option>
+    </md-select>
+
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput type="text" placeholder="Email" >
+      </md-input-container>
+    </div>
+
+
+    <button md-raised-button type="submit">Save</button>
+  </form>

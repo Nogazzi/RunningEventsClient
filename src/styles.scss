@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 //valid
+//@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 input.ng-valid[required] {
   //border: 5px solid #42A948; /* green */
   background-color: #42A948;

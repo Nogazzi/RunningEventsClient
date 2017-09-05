@@ -1,0 +1,17 @@
+<section>
+  <form  (ngSubmit)="signInUser()" #loginForm="ngForm" >
+
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="email" #email>
+      </md-input-container>
+    </div>
+
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="hasło" #password>
+      </md-input-container>
+    </div>
+    <button md-raised-button type="submit">Zaloguj</button>
+  </form>
+</section>
