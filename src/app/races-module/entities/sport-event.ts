@@ -1,4 +1,4 @@
-export interface SportEvent {
+export class SportEvent {
   id: number;
   name: string;
   date: Date;

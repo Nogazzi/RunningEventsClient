@@ -1,7 +1,8 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {Router} from "@angular/router";
 import {SportEvent} from "../entities/sport-event";
 import {RunEventsService} from "../services/run-events.service";
+import {MdDatepicker} from "@angular/material";
 
 @Component({
   selector: 'app-new-race-event',
@@ -10,20 +11,24 @@ import {RunEventsService} from "../services/run-events.service";
 })
 export class NewRaceEventComponent implements OnInit {
   sportEvent: SportEvent;
+  sub: any;
+
   constructor(private router: Router,
               private runEventsService: RunEventsService) {
     console.log('NewRaceEventComponent contructor');
+
   }
 
   ngOnInit() {
     console.log('NewRaceEventComponent OnInit');
+    this.sportEvent = new SportEvent();
   }
 
-  registerNewRunEvent(sportEvent:SportEvent){
-    //this.runEventsService.registerNewRunEvent(this.sportEvent);
+  registerNewRunEvent(){
     console.log('saved!!!', this.sportEvent);
-    let link = ['races/'];
-    this.router.navigate(link);
+    this.runEventsService.registerNewRunEvent(this.sportEvent);
+    /*let link = ['races/'];
+    this.router.navigate(link);*/
   }
 
   gotoRaceList(){

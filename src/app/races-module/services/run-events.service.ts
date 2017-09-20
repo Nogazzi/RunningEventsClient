@@ -7,11 +7,12 @@ import "rxjs/Rx";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import {SportEvent} from "../entities/sport-event";
+import {APP_DATE_FORMATS, AppDateAdapter} from "../../adapters/date-adapter/AppDateAdapter";
 
 
 @Injectable()
 export class RunEventsService {
-  private baseUrl: string = 'http://localhost:8080/races/';
+  private baseUrl: string = 'http://localhost:8090/races/';
 
   constructor(private http: Http) {
   }
@@ -42,21 +43,35 @@ export class RunEventsService {
   }
 
   save(sportEvent: SportEvent): Observable<Response> {
+
     return this
       .http
       .post(`${this.baseUrl}/load/${sportEvent.id}`, sportEvent, {headers: this.getHeaders()});
   }
-  registerNewRunEvent(sportEvent: SportEvent): Observable<Response> {
-    return this
-      .http
-      .post(`${this.baseUrl}registerevent`,{body: JSON.stringify(sportEvent)}, {headers: this.getHeaders()});
+
+  registerNewRunEvent(sportEvent: SportEvent) {
+    // console.log("registerNewRunEvent service: " + JSON.stringify(sportEvent));
+    // console.log("target url: " +  `${this.baseUrl}registerevent`);
+    let adapter = new AppDateAdapter();
+    console.log("formated date: ", adapter.format(sportEvent.date, 'input'));
+    console.log("Event date: " , sportEvent.date);
+    sportEvent.date = new Date(adapter.format(sportEvent.date, 'input'));
+    this.http
+      .post(`${this.baseUrl}registerevent`, JSON.stringify(sportEvent), {headers: this.getHeaders()})
+      .subscribe(
+        () => {
+        },
+        err => console.error(err)
+      );
+
+
   }
 
-  removeEvent(id: number){
+  removeEvent(id: number) {
     let result = this.http
       .delete(`${this.baseUrl}${id}`, {headers: this.getHeaders()})
       .catch(handleError);
-      console.log('destination address for delete: ', `${this.baseUrl}${id}`);
+    console.log('destination address for delete: ', `${this.baseUrl}${id}`);
     console.log('delete result: ', result);
     return result;
   }
@@ -100,12 +115,12 @@ function toEvent(r: any): SportEvent {
 
 function extractId(sportEventData: any) {
   let extractedId = sportEventData.url.replace('http://localhost:8080/races/', '');
-    //.replace('/', '');
+  //.replace('/', '');
   console.log('Extracted id: ', extractedId);
   return parseInt(extractedId);
 }
 
-function handleError(error: any){
+function handleError(error: any) {
   let errorMsg = error.message || `Yikes! Where was a problem with our hyperdrive device and we couldn't retrieve your data!`;
   console.error(errorMsg);
   return Observable.throw(errorMsg);

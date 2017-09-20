@@ -5,9 +5,13 @@
   </md-list-item>-->
   <md-list-item >
     <a md-line href="#"[routerLink]="['/races/', sportevent.id]" class="eventListItem">{{sportevent.name}}</a>
-    <p md-line class="eventListItem">{{sportevent.date}}</p>
-    <button md-mini-fab (click)="removeEvent(sportevent.id)"><md-icon>check</md-icon></button>
+    <div class="descItems">
+      <p md-line class="eventListItem">{{sportevent.date}}</p>
+      <p md-line class="eventListItem">{{sportevent.localization}}</p>
+    </div>
+
   </md-list-item>
+  <button md-mini-fab (click)="removeEvent(sportevent.id)"><md-icon>check</md-icon></button>
 </md-list>
 <section *ngIf="errorMessage">
   {{errorMesage}}
