@@ -30,8 +30,8 @@ import {PlayersRoutingModule} from "./players-routing/players-routing.module";
   ],
   declarations: [
     PlayersListComponent,
-    PlayerDetailsComponent,
-    NewPlayerComponent
+    PlayerDetailsComponent
+    //NewPlayerComponent
   ]
 })
 export class PlayersModule { }

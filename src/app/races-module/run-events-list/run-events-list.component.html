@@ -1,8 +1,8 @@
-<md-list *ngFor="let sportevent of sportEvents">
-  <!--<md-list-item >
+<!--<md-list *ngFor="let sportevent of sportEvents">
+  &lt;!&ndash;<md-list-item >
     <a md-line href="#" [routerLink]="['/races/', sportevent.id]" class="eventListItem">{{sportevent.name}}</a>
       <p md-line class="eventListItem">{{sportevent.date}}</p>
-  </md-list-item>-->
+  </md-list-item>&ndash;&gt;
   <md-list-item >
     <a md-line href="#"[routerLink]="['/races/', sportevent.id]" class="eventListItem">{{sportevent.name}}</a>
     <div class="descItems">
@@ -15,4 +15,28 @@
 </md-list>
 <section *ngIf="errorMessage">
   {{errorMesage}}
-</section>
+</section>-->
+
+<md-grid-list cols="3" >
+  <md-grid-tile *ngFor="let sportevent of sportEvents">
+
+    <md-card class="example-card">
+      <md-card-header>
+        <md-card-title><a href="#" [routerLink]="['/races/', sportevent.id]" >{{sportevent.name}}</a></md-card-title>
+        <md-card-subtitle>{{sportevent.localization}}, {{sportevent.date}}</md-card-subtitle>
+      </md-card-header>
+      <img md-card-image src="assets/img/run.jpeg" alt="Zdjęcie">
+      <md-card-content>
+        <p>
+          Najlepszy bieg z przeszkodami na świecie
+        </p>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button>WIĘCEJ</button>
+        <button md-button href="#" [routerLink]="['/races/register', sportevent.id]">ZAPISZ SIĘ</button>
+      </md-card-actions>
+    </md-card>
+
+
+  </md-grid-tile>
+</md-grid-list>

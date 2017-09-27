@@ -16,6 +16,9 @@ import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {APP_DATE_FORMATS, AppDateAdapter} from "../adapters/date-adapter/AppDateAdapter";
+import {PlayersModule} from "../players-module/players.module";
+import {NewPlayerComponent} from "../players-module/new-player/new-player.component";
+import { RegisterForRaceComponent } from './register-for-race/register-for-race.component';
 
 @NgModule({
   imports: [
@@ -30,11 +33,14 @@ import {APP_DATE_FORMATS, AppDateAdapter} from "../adapters/date-adapter/AppDate
     MdInputModule,
     MaterialModule,
     BrowserAnimationsModule,
+    PlayersModule
   ],
   declarations: [
     RunEventsListComponent,
     RunEventDetailsComponent,
-    NewRaceEventComponent
+    NewRaceEventComponent,
+    RegisterForRaceComponent,
+    NewPlayerComponent,
   ],
   providers: [
     RunEventsService,

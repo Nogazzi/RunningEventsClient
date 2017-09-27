@@ -26,7 +26,7 @@ export class NewRaceEventComponent implements OnInit {
 
   registerNewRunEvent(){
     console.log('saved!!!', this.sportEvent);
-    this.runEventsService.registerNewRunEvent(this.sportEvent);
+    return this.runEventsService.registerNewRunEvent(this.sportEvent);
     /*let link = ['races/'];
     this.router.navigate(link);*/
   }

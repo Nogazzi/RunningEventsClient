@@ -29,7 +29,7 @@ export class RunEventsService {
 
   private getHeaders() {
     let headers = new Headers();
-    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
     return headers;
   }
 
@@ -50,12 +50,6 @@ export class RunEventsService {
   }
 
   registerNewRunEvent(sportEvent: SportEvent) {
-    // console.log("registerNewRunEvent service: " + JSON.stringify(sportEvent));
-    // console.log("target url: " +  `${this.baseUrl}registerevent`);
-    let adapter = new AppDateAdapter();
-    console.log("formated date: ", adapter.format(sportEvent.date, 'input'));
-    console.log("Event date: " , sportEvent.date);
-    sportEvent.date = new Date(adapter.format(sportEvent.date, 'input'));
     this.http
       .post(`${this.baseUrl}registerevent`, JSON.stringify(sportEvent), {headers: this.getHeaders()})
       .subscribe(
