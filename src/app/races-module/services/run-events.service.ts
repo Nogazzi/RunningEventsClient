@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers} from "@angular/http";
+import {Headers, Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs";
 import "rxjs/add/operator/map";
@@ -7,12 +7,13 @@ import "rxjs/Rx";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import {SportEvent} from "../entities/sport-event";
-import {APP_DATE_FORMATS, AppDateAdapter} from "../../adapters/date-adapter/AppDateAdapter";
+import {RaceResult} from "../entities/race-result";
 
 
 @Injectable()
 export class RunEventsService {
   private baseUrl: string = 'http://localhost:8090/races/';
+  private baseResultsUrl: string = 'http://localhost:8080/results/';
 
   constructor(private http: Http) {
   }
@@ -70,6 +71,15 @@ export class RunEventsService {
     return result;
   }
 
+  registerForRunEvent(raceResult: RaceResult) {
+    this.http
+      .post(`${this.baseResultsUrl}registerResult`, JSON.stringify(raceResult), {headers: this.getHeaders()})
+      .subscribe(
+        () => {
+        },
+        err => console.error(err)
+      );
+  }
 }
 
 function mapEvent(response: Response): SportEvent {

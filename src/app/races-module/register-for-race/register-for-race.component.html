@@ -1,2 +1,54 @@
 <run-event-details></run-event-details>
-<app-new-player></app-new-player>
+
+
+<form  (ngSubmit)="registerForRunEvent()" #playerForm="ngForm" >
+
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Imię" [(ngModel)]="raceResult.firstName" name="firstName" >
+    </md-input-container>
+  </div>
+
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput type="text" placeholder="Nazwisko" [(ngModel)]="raceResult.lastName" name="lastName">
+    </md-input-container>
+  </div>
+
+  <md-input-container>
+    <input mdInput [mdDatepicker]="picker" placeholder="Data urodzenia" [(ngModel)]="raceResult.birthDate" name="birthdate">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+
+
+  <p> Narodowość: </p>
+  <md-select [(ngModel)]="raceResult.nationality" name="nationality">
+    <md-option *ngFor="let nationality of nationalities" [value]="nationality.name_pl" >
+      {{nationality.name_pl}}
+    </md-option>
+  </md-select>
+
+
+
+  <p> Drużyna: </p>
+  <md-select [(ngModel)]="raceResult.teamName" name="teamname">
+    <md-option *ngFor="let team of teams" [value]="team.name">
+      {{team.name}}
+    </md-option>
+  </md-select>
+
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput type="text" placeholder="E-mail" [(ngModel)]="raceResult.email" name="email">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput type="text" placeholder="Confirm E-mail" >
+    </md-input-container>
+  </div>
+
+  <button md-raised-button type="submit">Save</button>
+</form>
+
