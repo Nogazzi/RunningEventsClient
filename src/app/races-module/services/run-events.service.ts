@@ -8,12 +8,13 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import {SportEvent} from "../entities/sport-event";
 import {RaceResult} from "../entities/race-result";
+import {RaceRegistration} from "../entities/race-registration";
 
 
 @Injectable()
 export class RunEventsService {
   private baseUrl: string = 'http://localhost:8090/races/';
-  private baseResultsUrl: string = 'http://localhost:8080/results/';
+  private baseResultsUrl: string = 'http://localhost:8095/results/';
 
   constructor(private http: Http) {
   }
@@ -71,14 +72,16 @@ export class RunEventsService {
     return result;
   }
 
-  registerForRunEvent(raceResult: RaceResult) {
-    this.http
-      .post(`${this.baseResultsUrl}registerResult`, JSON.stringify(raceResult), {headers: this.getHeaders()})
+  registerForRunEvent(raceRegistration: RaceRegistration) {
+    console.log("You wanna send registration: ", JSON.stringify(raceRegistration));
+    let result = this.http
+      .post(`${this.baseResultsUrl}registerResult`, JSON.stringify(raceRegistration), {headers: this.getHeaders()})
       .subscribe(
         () => {
         },
         err => console.error(err)
       );
+    return result;
   }
 }
 

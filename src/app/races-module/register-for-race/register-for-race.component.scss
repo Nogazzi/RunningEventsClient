@@ -1,0 +1,26 @@
+.example-card {
+  width: 400px;
+}
+.mat-card-title{
+  font-size: 22px;
+  margin: auto;
+}
+.md-card-subtitle{
+  margin: auto;
+}
+.mat-card{
+  border-radius: 20px;
+  margin: auto;
+}
+#registrationForm{
+  margin: auto;
+  background-color: rgba(255,255,255,0.6);
+  width: 400px;
+}
+#registrationForm>* {
+  margin: auto;
+  display: block;
+}
+.mat-input-container{
+  display: inline;
+}
