@@ -19,11 +19,13 @@ import {PlayersRoutingModule} from "./players-module/players-routing/players-rou
 import {AppRoutingModule} from "./app-routing.module";
 import {PlayersModule} from "./players-module/players.module";
 import {Router} from "@angular/router";
+//import { PeopleResultsComponent } from './race-module/people-results/people-results.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    //PeopleResultsComponent,
 
   ],
   imports: [

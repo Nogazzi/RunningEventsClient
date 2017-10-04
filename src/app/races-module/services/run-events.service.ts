@@ -7,7 +7,6 @@ import "rxjs/Rx";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 import {SportEvent} from "../entities/sport-event";
-import {RaceResult} from "../entities/race-result";
 import {RaceRegistration} from "../entities/race-registration";
 
 
@@ -98,15 +97,15 @@ function mapEvents(response: Response): SportEvent[] {
   console.log('Received response: ', response);
 
   /*let result = response.json();
-  console.log("Received result: ", result.map(e => toEvent(e)));
+  console.log("Received result: ", result.map(e => toResult(e)));
   return result;*/
   return response.json().map(toEvent);
-  //return json.map(e => toEvent);
-  //return response.json().map(toEvent);
+  //return json.map(e => toResult);
+  //return response.json().map(toResult);
 }
 
 function toEvent(r: any): SportEvent {
-  console.log("Method toEvent");
+  console.log("Method toResult");
   let sportEvent = <SportEvent>({
     id: r.id,
     name: r.name,

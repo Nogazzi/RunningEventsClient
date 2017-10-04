@@ -19,6 +19,9 @@ import {APP_DATE_FORMATS, AppDateAdapter} from "../adapters/date-adapter/AppDate
 import {PlayersModule} from "../players-module/players.module";
 import {NewPlayerComponent} from "../players-module/new-player/new-player.component";
 import { RegisterForRaceComponent } from './register-for-race/register-for-race.component';
+import { PeopleResultsComponent } from './people-results/people-results.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {PeopleResultsService} from "./people-results/people-results.service";
 
 @NgModule({
   imports: [
@@ -33,7 +36,9 @@ import { RegisterForRaceComponent } from './register-for-race/register-for-race.
     MdInputModule,
     MaterialModule,
     BrowserAnimationsModule,
-    PlayersModule
+    PlayersModule,
+    NgxDatatableModule
+
   ],
   declarations: [
     RunEventsListComponent,
@@ -41,9 +46,11 @@ import { RegisterForRaceComponent } from './register-for-race/register-for-race.
     NewRaceEventComponent,
     RegisterForRaceComponent,
     NewPlayerComponent,
+    PeopleResultsComponent,
   ],
   providers: [
     RunEventsService,
+    PeopleResultsService,
     {
       provide: DateAdapter, useClass: AppDateAdapter
     },

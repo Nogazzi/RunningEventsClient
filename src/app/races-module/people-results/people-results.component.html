@@ -1,0 +1,12 @@
+<div>
+  <ngx-datatable
+    class="material draggable"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="50">
+  </ngx-datatable>
+</div>
+<button md-raised-button (click)="generateResults()">Generuj wyniki</button>

@@ -1,5 +1,4 @@
 export class PersonResult {
-  id: number;
   timeResult: number;
   playerNumber: number;
   firstName: string;
@@ -7,10 +6,4 @@ export class PersonResult {
   birthDate: Date;
   nationality: string;
   teamName: string;
-  raceId: number;
-  raceName: string;
-  raceDate: Date;
-  raceLocalization: string;
-  raceOrganizator: string;
-  raceDistance: number;
 }

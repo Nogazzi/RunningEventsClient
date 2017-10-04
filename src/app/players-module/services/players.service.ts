@@ -78,11 +78,11 @@ function mapPlayers(response: Response): Player[] {
   console.log('Received response: ', response);
 
   /*let result = response.json();
-   console.log("Received result: ", result.map(e => toEvent(e)));
+   console.log("Received result: ", result.map(e => toResult(e)));
    return result;*/
   return response.json().map(toPlayer);
-  //return json.map(e => toEvent);
-  //return response.json().map(toEvent);
+  //return json.map(e => toResult);
+  //return response.json().map(toResult);
 }
 
 function toPlayer(r: any): Player {
