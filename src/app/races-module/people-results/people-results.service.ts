@@ -11,8 +11,8 @@ import {PersonResult} from "../entities/person-result";
 @Injectable()
 export class PeopleResultsService {
 
-  private baseUrl: string = 'http://localhost:8090/races/';
-  private baseResultsUrl: string = 'http://localhost:8095/results/';
+  private baseUrl: string = 'http://localhost:8080/races/';
+  private baseResultsUrl: string = 'http://localhost:8080/results/';
 
   constructor(private http: Http) {
   }

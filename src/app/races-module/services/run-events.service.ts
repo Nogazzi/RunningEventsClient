@@ -12,8 +12,8 @@ import {RaceRegistration} from "../entities/race-registration";
 
 @Injectable()
 export class RunEventsService {
-  private baseUrl: string = 'http://localhost:8090/races/';
-  private baseResultsUrl: string = 'http://localhost:8095/results/';
+  private baseUrl: string = 'http://localhost:8080/races/';
+  private baseResultsUrl: string = 'http://localhost:8080/results/';
 
   constructor(private http: Http) {
   }
